@@ -7,6 +7,6 @@ export default defineNuxtConfig({
         plugins: [tailwindcss()],
     },
     hub: {
-        db: 'sqlite',
+        db: 'mysql',
     },
 });
