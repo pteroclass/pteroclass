@@ -1,5 +1,5 @@
 <template>
-    <UForm class="flex flex-col gap-y-2">
+    <UForm class="flex flex-col gap-y-2" method="POST" action="/api/login">
         <UFormField label="email" name="email" size="lg" required>
             <UInput type="email" />
         </UFormField>
