@@ -1,0 +1,3 @@
+<template>
+    <USelectMenu></USelectMenu>
+</template>
