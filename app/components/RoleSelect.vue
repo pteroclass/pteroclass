@@ -1,15 +1,10 @@
 <template>
-    <USelectMenu name="role" :disabled="props.disabled">
-        <USelectMenuItem value="admin" :selected="isAdminSelected"
-            >Admin</USelectMenuItem
-        >
-        <USelectMenuItem value="teacher" :selected="isTeacherSelected"
-            >Teacher</USelectMenuItem
-        >
-        <USelectMenuItem value="student" :selected="isStudentSelected"
-            >Student</USelectMenuItem
-        >
-    </USelectMenu>
+    <USelect
+        name="role"
+        :disabled="props.disabled"
+        :items="items"
+        :defaultValue="props.selectedRole"
+    />
 </template>
 <script setup lang="ts">
 const props = withDefaults(
@@ -22,7 +17,5 @@ const props = withDefaults(
         selectedRole: 'student',
     },
 );
-const isStudentSelected = computed(() => props.selectedRole === 'student');
-const isTeacherSelected = computed(() => props.selectedRole === 'teacher');
-const isAdminSelected = computed(() => props.selectedRole === 'admin');
+const items = ['admin', 'teacher', 'student'];
 </script>

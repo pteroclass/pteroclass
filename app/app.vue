@@ -4,7 +4,7 @@
         <Meta name="viewport" content="width=device-width" />
         <Link rel="icon" href="/favicon.ico" />
     </Head>
-    <Body class="flex h-screen flex-col items-center justify-center">
+    <Body class="flex h-screen flex-col justify-center">
         <NuxtPage />
     </Body>
 </template>
