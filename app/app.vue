@@ -5,7 +5,9 @@
         <Link rel="icon" href="/favicon.ico" />
     </Head>
     <Body class="flex h-screen flex-col justify-center">
-        <NuxtPage />
+        <UContainer class="flex flex-col items-center">
+            <NuxtPage />
+        </UContainer>
     </Body>
 </template>
 
