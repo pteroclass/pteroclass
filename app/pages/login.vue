@@ -11,3 +11,8 @@
         >
     </UForm>
 </template>
+<script setup lang="ts">
+useHead({
+    title: 'User - Login',
+});
+</script>

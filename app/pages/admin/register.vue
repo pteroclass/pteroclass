@@ -43,6 +43,9 @@
     </UContainer>
 </template>
 <script setup lang="ts">
+useHead({
+    title: 'Admin - Register',
+});
 const verified = ref('Yes');
 const isVerified = computed(() => verified.value == 'Yes');
 </script>
