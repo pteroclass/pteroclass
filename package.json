@@ -16,16 +16,17 @@
         "dotenv": "^17.2.3",
         "drizzle-kit": "^0.31.8",
         "drizzle-orm": "^0.45.1",
-        "mysql2": "^3.16.0",
+        "mysql2": "^3.16.1",
         "nuxt": "^4.2.2",
         "uuid": "^13.0.0",
-        "vue": "^3.5.26",
-        "vue-router": "^4.6.4"
+        "vue": "^3.5.27",
+        "vue-router": "^4.6.4",
+        "zod": "^4.3.5"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.1.18",
-        "@types/node": "^25.0.5",
-        "prettier": "^3.7.4",
+        "@types/node": "^25.0.9",
+        "prettier": "^3.8.0",
         "prettier-plugin-organize-imports": "^4.3.0",
         "prettier-plugin-tailwindcss": "^0.7.2",
         "tailwind-merge": "^3.4.0",

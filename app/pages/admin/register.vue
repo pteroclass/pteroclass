@@ -1,26 +1,55 @@
+<script setup lang="ts">
+import z from 'zod';
+
+useHead({
+    title: 'Admin - Register',
+});
+const formSchema = z.object({
+    email: z.email(),
+    password: z.string(),
+    role: zodRoleEnum,
+    verified: z.enum(['Yes', 'No']),
+});
+type Schema = z.infer<typeof formSchema>;
+const formState = reactive<Schema>({
+    email: '',
+    password: '',
+    role: 'admin',
+    verified: 'Yes',
+});
+const isVerified = computed(() => formState.verified == 'Yes');
+const onSubmit = () => {};
+</script>
+
 <template>
     <UContainer class="flex flex-col items-center gap-y-2">
         <UForm
             class="flex flex-col gap-y-2"
-            method="POST"
-            action="/api/admin/register"
+            :schema="formSchema"
+            :state="formState"
+            @submit="onSubmit"
         >
             <UFieldGroup class="gap-x-2">
                 <UFormField label="email" name="email" size="lg" required>
-                    <UInput type="email" />
+                    <UInput type="email" v-model="formState.email" />
                 </UFormField>
                 <UFormField label="password" name="password" size="lg" required>
-                    <UInput type="password" />
+                    <UInput type="password" v-model="formState.password" />
                 </UFormField>
             </UFieldGroup>
             <UFieldGroup class="gap-x-2">
                 <UFormField class="w-full" label="role" required>
-                    <RoleSelect class="w-full" selectedRole="admin" disabled />
+                    <RoleSelect
+                        class="w-full"
+                        v-model="formState.role"
+                        selectedRole="admin"
+                        disabled
+                    />
                 </UFormField>
                 <UFormField class="w-full" label="verified" required>
                     <USelect
                         class="w-full"
-                        v-model="verified"
+                        v-model="formState.verified"
                         name="verified"
                         :items="['Yes', 'No']"
                         defaultValue="Yes"
@@ -42,10 +71,3 @@
         />
     </UContainer>
 </template>
-<script setup lang="ts">
-useHead({
-    title: 'Admin - Register',
-});
-const verified = ref('Yes');
-const isVerified = computed(() => verified.value == 'Yes');
-</script>
