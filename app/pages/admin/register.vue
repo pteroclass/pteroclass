@@ -1,31 +1,29 @@
 <script setup lang="ts">
-import z from 'zod';
-
 useHead({
     title: 'Admin - Register',
 });
-const formSchema = z.object({
-    email: z.email(),
-    password: z.string(),
-    role: zodRoleEnum,
-    verified: z.enum(['Yes', 'No']),
-});
-type Schema = z.infer<typeof formSchema>;
-const formState = reactive<Schema>({
+const formState = reactive<AdminSchema>({
     email: '',
     password: '',
     role: 'admin',
     verified: 'Yes',
 });
 const isVerified = computed(() => formState.verified == 'Yes');
-const onSubmit = () => {};
+const onSubmit = () => {
+    if (adminZodSchema.safeParse(formState)) {
+        useFetch('/api/admin/register', {
+            method: 'POST',
+            body: JSON.stringify(formState),
+        });
+    }
+};
 </script>
 
 <template>
     <UContainer class="flex flex-col items-center gap-y-2">
         <UForm
             class="flex flex-col gap-y-2"
-            :schema="formSchema"
+            :schema="adminZodSchema"
             :state="formState"
             @submit="onSubmit"
         >
