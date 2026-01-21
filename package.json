@@ -7,12 +7,13 @@
         "dev": "nuxt dev -o",
         "generate": "nuxt generate",
         "preview": "nuxt preview",
-        "postinstall": "nuxt prepare",
+        "postinstall": "nuxt prepare && nuxt db generate",
         "format": "prettier --write ."
     },
     "dependencies": {
         "@nuxt/ui": "^4.3.0",
         "@nuxthub/core": "0.10.4",
+        "bcrypt": "^6.0.0",
         "dotenv": "^17.2.3",
         "drizzle-kit": "^0.31.8",
         "drizzle-orm": "^0.45.1",
@@ -25,6 +26,7 @@
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.1.18",
+        "@types/bcrypt": "^6.0.0",
         "@types/node": "^25.0.9",
         "prettier": "^3.8.0",
         "prettier-plugin-organize-imports": "^4.3.0",

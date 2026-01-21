@@ -8,16 +8,16 @@ const formState = reactive<AdminSchema>({
     role: 'admin',
     verified: 'Yes',
 });
-const router = useRouter();
 const isVerified = computed(() => formState.verified == 'Yes');
+const isAdmin = computed(() => formState.role == 'admin');
 const onSubmit = async () => {
     if (adminZodSchema.safeParse(formState)) {
-        const res = await useFetch('/api/admin/register', {
+        const { status } = await useFetch('/api/admin/register', {
             method: 'POST',
             body: JSON.stringify(formState),
         });
-        if (res.status.value == 'success') {
-            await router.push('/admin/dashboard');
+        if (status.value == 'success') {
+            await navigateTo('/admin/dashboard');
         }
     }
 };
@@ -45,7 +45,6 @@ const onSubmit = async () => {
                         class="w-full"
                         v-model="formState.role"
                         selectedRole="admin"
-                        disabled
                     />
                 </UFormField>
                 <UFormField class="w-full" label="verified" required>
@@ -70,6 +69,13 @@ const onSubmit = async () => {
             color="warning"
             variant="subtle"
             title="If verified is set to false, it will be asked to change the password on the next step..."
+        />
+        <UAlert
+            v-if="!isAdmin"
+            class="w-fit"
+            color="warning"
+            variant="subtle"
+            title="You can create a normal user here, but it is not recommended, you will need to create another admin user then..."
         />
     </UContainer>
 </template>

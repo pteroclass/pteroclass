@@ -1,4 +1,9 @@
-import { boolean, mysqlTable, varchar } from 'drizzle-orm/mysql-core';
+import {
+    boolean,
+    mysqlTable,
+    timestamp,
+    varchar,
+} from 'drizzle-orm/mysql-core';
 import { v4 as uuidv4 } from 'uuid';
 
 export const users = mysqlTable('users', {
@@ -9,6 +14,7 @@ export const users = mysqlTable('users', {
     password: varchar('password', { length: 60 }).notNull(),
     role: varchar('role', { length: 7 }).notNull().default('student'),
     is_verified: boolean('is_verified').notNull().default(false),
+    created_at: timestamp('created_at').notNull().defaultNow(),
 });
 
 export type User = typeof users.$inferInsert;
