@@ -8,13 +8,17 @@ const formState = reactive<AdminSchema>({
     role: 'admin',
     verified: 'Yes',
 });
+const router = useRouter();
 const isVerified = computed(() => formState.verified == 'Yes');
-const onSubmit = () => {
+const onSubmit = async () => {
     if (adminZodSchema.safeParse(formState)) {
-        useFetch('/api/admin/register', {
+        const res = await useFetch('/api/admin/register', {
             method: 'POST',
             body: JSON.stringify(formState),
         });
+        if (res.status.value == 'success') {
+            await router.push('/admin/dashboard');
+        }
     }
 };
 </script>
