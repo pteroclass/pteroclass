@@ -12,11 +12,13 @@ const isVerified = computed(() => formState.verified == 'Yes');
 const isAdmin = computed(() => formState.role == 'admin');
 const onSubmit = async () => {
     if (adminZodSchema.safeParse(formState)) {
-        const { status } = await useFetch('/api/admin/register', {
+        const { data } = await useFetch('/api/admin/register', {
             method: 'POST',
             body: JSON.stringify(formState),
         });
-        if (status.value == 'success') {
+        if (data.value?.needsVerification) {
+            await navigateTo('/change-password');
+        } else if (data.value?.success) {
             await navigateTo('/admin/dashboard');
         }
     }

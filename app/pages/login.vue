@@ -8,11 +8,13 @@ const formState = reactive<LoginSchema>({
 });
 const onSubmit = async () => {
     if (loginZodSchema.safeParse(formState)) {
-        const { status } = await useFetch('/api/login', {
+        const { data } = await useFetch('/api/login', {
             method: 'POST',
             body: JSON.stringify(formState),
         });
-        if (status.value == 'success') {
+        if (data.value.needsVerification) {
+            await navigateTo('/change-password');
+        } else if (data.value.success) {
             await navigateTo('/dashboard');
         }
     }
