@@ -48,13 +48,11 @@ const onSubmit = async () => {
                     />
                 </UFormField>
                 <UFormField class="w-full" label="verified" required>
-                    <USelect
+                    <VerifiedSelect
                         class="w-full"
                         v-model="formState.verified"
-                        name="verified"
-                        :items="['Yes', 'No']"
-                        defaultValue="Yes"
-                    ></USelect>
+                        selectedVerified="Yes"
+                    />
                 </UFormField>
             </UFieldGroup>
             <UButton

@@ -2,11 +2,13 @@ import z from 'zod';
 
 export const zodRoleEnum = z.enum(['student', 'teacher', 'admin']);
 
+export const zodVerifiedEnum = z.enum(['Yes', 'No']);
+
 export const adminZodSchema = z.object({
     email: z.email(),
     password: z.string(),
     role: zodRoleEnum,
-    verified: z.enum(['Yes', 'No']),
+    verified: zodVerifiedEnum,
 });
 
 export const loginZodSchema = z.object({
