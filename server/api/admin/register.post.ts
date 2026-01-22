@@ -27,7 +27,15 @@ export default defineEventHandler(async (e) => {
         isVerified,
     });
     if (!isVerified) {
-        return { message: 'You need to change your password', needsVerification: true, success: false };
+        return {
+            message: 'You need to change your password',
+            needsVerification: true,
+            success: false,
+        };
     }
-    return { message: 'Admin registered successfully', needsVerification: false, success: true };
+    return {
+        message: 'Admin registered successfully',
+        needsVerification: false,
+        success: true,
+    };
 });

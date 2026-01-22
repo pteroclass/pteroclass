@@ -19,4 +19,3 @@ const props = withDefaults(
 );
 const items = ['Yes', 'No'];
 </script>
-
