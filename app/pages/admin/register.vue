@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { FormSubmitEvent } from '@nuxt/ui';
+
 useHead({
     title: 'Admin - Register',
 });
@@ -10,17 +12,15 @@ const formState = reactive<AdminSchema>({
 });
 const isVerified = computed(() => formState.verified == 'Yes');
 const isAdmin = computed(() => formState.role == 'admin');
-const onSubmit = async () => {
-    if (adminZodSchema.safeParse(formState)) {
-        const { data } = await useFetch('/api/admin/register', {
-            method: 'POST',
-            body: JSON.stringify(formState),
-        });
-        if (data.value?.needsVerification) {
-            await navigateTo('/change-password');
-        } else if (data.value?.success) {
-            await navigateTo('/admin/dashboard');
-        }
+const onSubmit = async (e: FormSubmitEvent<AdminSchema>) => {
+    const { data } = await useFetch('/api/admin/register', {
+        method: 'POST',
+        body: JSON.stringify(e.data),
+    });
+    if (data.value?.needsVerification) {
+        await navigateTo('/change-password');
+    } else if (data.value?.success) {
+        await navigateTo('/admin/dashboard');
     }
 };
 </script>

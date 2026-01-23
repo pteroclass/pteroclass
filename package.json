@@ -11,24 +11,24 @@
         "format": "prettier --write ."
     },
     "dependencies": {
-        "@nuxt/ui": "^4.3.0",
-        "@nuxthub/core": "0.10.4",
+        "@nuxt/ui": "^4.4.0",
+        "@nuxthub/core": "0.10.5",
         "bcrypt": "^6.0.0",
         "dotenv": "^17.2.3",
         "drizzle-kit": "^0.31.8",
         "drizzle-orm": "^0.45.1",
         "mysql2": "^3.16.1",
-        "nuxt": "^4.2.2",
+        "nuxt": "^4.3.0",
         "uuid": "^13.0.0",
         "vue": "^3.5.27",
         "vue-router": "^4.6.4",
-        "zod": "^4.3.5"
+        "zod": "^4.3.6"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.1.18",
         "@types/bcrypt": "^6.0.0",
-        "@types/node": "^25.0.9",
-        "prettier": "^3.8.0",
+        "@types/node": "^25.0.10",
+        "prettier": "^3.8.1",
         "prettier-plugin-organize-imports": "^4.3.0",
         "prettier-plugin-tailwindcss": "^0.7.2",
         "tailwind-merge": "^3.4.0",
