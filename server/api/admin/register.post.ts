@@ -24,7 +24,7 @@ export default defineEventHandler(async (e) => {
         email,
         password: hashedPassword,
         role,
-        isVerified,
+        is_verified: isVerified,
     });
     if (!isVerified) {
         return {
