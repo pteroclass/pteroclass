@@ -16,6 +16,12 @@ export const loginZodSchema = z.object({
     password: z.string(),
 });
 
+export const changePasswordZodSchema = z.object({
+    password: z.string(),
+});
+
 export type AdminSchema = z.infer<typeof adminZodSchema>;
 
 export type LoginSchema = z.infer<typeof loginZodSchema>;
+
+export type ChangePasswordSchema = z.infer<typeof changePasswordZodSchema>;

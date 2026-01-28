@@ -27,6 +27,11 @@ export default defineEventHandler(async (e) => {
         is_verified: isVerified,
     });
     if (!isVerified) {
+        setUserSession(e, {
+            user: {
+                email,
+            },
+        });
         return {
             message: 'You need to change your password',
             needsVerification: true,
