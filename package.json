@@ -13,7 +13,7 @@
     },
     "dependencies": {
         "@nuxt/ui": "^4.4.0",
-        "@nuxthub/core": "0.10.5",
+        "@nuxthub/core": "0.10.4",
         "bcrypt": "^6.0.0",
         "dotenv": "^17.2.3",
         "drizzle-kit": "^0.31.8",

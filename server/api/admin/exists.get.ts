@@ -1,5 +1,5 @@
-import { db, schema } from '@nuxthub/db';
 import { eq } from 'drizzle-orm';
+import { db, schema } from 'hub:db';
 
 export default defineEventHandler(async () => {
     const adminExists =
