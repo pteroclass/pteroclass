@@ -17,9 +17,10 @@ const onSubmit = async (e: FormSubmitEvent<AdminSchema>) => {
         method: 'POST',
         body: JSON.stringify(e.data),
     });
-    if (data.value?.needsVerification) {
-        await navigateTo('/change-password');
-    } else if (data.value?.success) {
+    if (data.value?.success) {
+        if (data.value?.needsVerification) {
+            await navigateTo('/admin/change-password');
+        }
         await navigateTo('/admin/dashboard');
     }
 };

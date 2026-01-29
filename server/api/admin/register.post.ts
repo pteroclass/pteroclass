@@ -1,21 +1,19 @@
+import { db, schema } from '@nuxthub/db';
 import bcrypt from 'bcrypt';
-import z from 'zod';
 
 export default defineEventHandler(async (e) => {
     const { success } = await $fetch('/api/admin/exists');
     if (success) {
-        throw createError({
-            statusCode: 403,
-            statusMessage: 'Admin already exists',
-        });
+        setResponseStatus(e, 409);
+        return { message: 'Admin already exists', success: false as const };
     }
     const body = await readValidatedBody(e, adminZodSchema.safeParse);
     if (!body.success) {
-        throw createError({
-            statusCode: 400,
-            statusMessage: 'Invalid request body',
-            data: z.treeifyError(body.error),
-        });
+        setResponseStatus(e, 406);
+        return {
+            message: 'Body not parsed correctly',
+            success: false as const,
+        };
     }
     const { email, password, role, verified } = body.data;
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -32,15 +30,23 @@ export default defineEventHandler(async (e) => {
                 email,
             },
         });
+        setResponseStatus(e, 412);
         return {
             message: 'You need to change your password',
             needsVerification: true,
-            success: false,
+            success: true as const,
         };
     }
+    setUserSession(e, {
+        user: {
+            email,
+            password: hashedPassword,
+        },
+    });
+    setResponseStatus(e, 201);
     return {
         message: 'Admin registered successfully',
         needsVerification: false,
-        success: true,
+        success: true as const,
     };
 });
