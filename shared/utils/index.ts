@@ -22,6 +22,8 @@ export const changePasswordZodSchema = z.object({
 
 export type Role = z.infer<typeof zodRoleEnum>;
 
+export type Verified = z.infer<typeof zodVerifiedEnum>;
+
 export type AdminSchema = z.infer<typeof adminZodSchema>;
 
 export type LoginSchema = z.infer<typeof loginZodSchema>;

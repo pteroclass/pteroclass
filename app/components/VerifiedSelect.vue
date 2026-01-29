@@ -10,12 +10,12 @@
 const props = withDefaults(
     defineProps<{
         disabled?: boolean;
-        selectedVerified?: 'Yes' | 'No';
+        selectedVerified?: Verified;
     }>(),
     {
         disabled: false,
         selectedVerified: 'Yes',
     },
 );
-const items = ['Yes', 'No'];
+const items = zodVerifiedEnum.options;
 </script>

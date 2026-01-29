@@ -10,12 +10,12 @@
 const props = withDefaults(
     defineProps<{
         disabled?: boolean;
-        selectedRole?: 'admin' | 'teacher' | 'student';
+        selectedRole?: Role;
     }>(),
     {
         disabled: false,
         selectedRole: 'student',
     },
 );
-const items = ['admin', 'teacher', 'student'];
+const items = zodRoleEnum.options;
 </script>

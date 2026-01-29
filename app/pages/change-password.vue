@@ -9,14 +9,14 @@ const formState = reactive<ChangePasswordSchema>({
 });
 const { user } = useUserSession();
 const onSubmit = async (e: FormSubmitEvent<ChangePasswordSchema>) => {
-    const { data } = await useFetch('/api/change-password', {
+    const res = await $fetch('/api/change-password', {
         method: 'POST',
-        body: JSON.stringify({
+        body: {
             email: user.value?.email,
             ...e.data,
-        }),
+        },
     });
-    if (data.value?.success) {
+    if (res.success) {
         await navigateTo('/dashboard');
     }
 };
@@ -28,7 +28,7 @@ const onSubmit = async (e: FormSubmitEvent<ChangePasswordSchema>) => {
             class="flex flex-col gap-y-2"
             :schema="changePasswordZodSchema"
             :state="formState"
-            @submit="onSubmit"
+            @submit.prevent="onSubmit"
         >
             <UFormField label="password" name="password" size="lg" required>
                 <UInput type="password" v-model="formState.password" />

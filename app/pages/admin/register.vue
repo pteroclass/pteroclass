@@ -13,12 +13,12 @@ const formState = reactive<AdminSchema>({
 const isVerified = computed(() => formState.verified == 'Yes');
 const isAdmin = computed(() => formState.role == 'admin');
 const onSubmit = async (e: FormSubmitEvent<AdminSchema>) => {
-    const { data } = await useFetch('/api/admin/register', {
+    const res = await $fetch('/api/admin/register', {
         method: 'POST',
-        body: JSON.stringify(e.data),
+        body: e.data,
     });
-    if (data.value?.success) {
-        if (data.value?.needsVerification) {
+    if (res.success) {
+        if (res.needsVerification) {
             await navigateTo('/admin/change-password');
         }
         await navigateTo('/admin/dashboard');
@@ -32,7 +32,7 @@ const onSubmit = async (e: FormSubmitEvent<AdminSchema>) => {
             class="flex flex-col gap-y-2"
             :schema="adminZodSchema"
             :state="formState"
-            @submit="onSubmit"
+            @submit.prevent="onSubmit"
         >
             <UFieldGroup class="gap-x-2">
                 <UFormField label="email" name="email" size="lg" required>
