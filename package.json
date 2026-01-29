@@ -4,10 +4,11 @@
     "private": true,
     "scripts": {
         "build": "nuxt build",
-        "dev": "nuxt dev -o",
+        "dev": "nuxt dev",
         "generate": "nuxt generate",
         "preview": "nuxt preview",
         "postinstall": "nuxt prepare && nuxt db generate",
+        "start": "make -j 2",
         "format": "prettier --write ."
     },
     "dependencies": {
