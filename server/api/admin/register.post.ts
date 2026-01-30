@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { db, schema } from 'hub:db';
+import { db, schema } from '@nuxthub/db';
 
 export default defineEventHandler(async (e) => {
     const { success } = await $fetch('/api/admin/exists');

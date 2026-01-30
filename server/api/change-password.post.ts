@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { eq } from 'drizzle-orm';
-import { db, schema } from 'hub:db';
+import { db, schema } from '@nuxthub/db';
 import z from 'zod';
 
 export default defineEventHandler(async (e) => {
