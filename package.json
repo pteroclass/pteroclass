@@ -8,7 +8,7 @@
         "generate": "nuxt generate",
         "preview": "nuxt preview",
         "postinstall": "nuxt prepare && nuxt db generate",
-        "start": "make -j 2",
+        "start": "make -j",
         "format": "prettier --write ."
     },
     "dependencies": {

@@ -1,5 +1,5 @@
-.PHONY: all dev start mysql cleanup
-all: dev start mysql cleanup
+.PHONY: all dev start mysql
+all: dev start mysql
 dev:
 	@bun dev
 start:
@@ -10,9 +10,7 @@ mysql:
 		-it \
 		--rm \
 		-p 3306:3306 \
-		-e MYSQL_USER_DB=pteroclass_db \
-		-e MYSQL_ROOT_PWD=lory030507 \
+		-e MYSQL_DATABASE=pteroclass_db \
+		-e MYSQL_ROOT_PASSWORD=lory030507 \
 		-v mysql:/var/lib/mysql \
-		leafney/alpine-mariadb
-cleanup:
-	@trap 'docker stop mysql' SIGINT
+		jbergstroem/mariadb-alpine
