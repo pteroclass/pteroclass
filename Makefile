@@ -8,7 +8,6 @@ mysql:
 	@docker run \
 		--name mysql \
 		-it \
-		--init \
 		--rm \
 		-p 3306:3306 \
 		-e MYSQL_USER_DB=pteroclass_db \
