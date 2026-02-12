@@ -1,10 +1,10 @@
 .PHONY: all dev start mysql
-all: dev start mysql
-dev:
-	@bun dev
+all: dev mysql
 start:
 	@docker desktop start || true
-mysql:
+dev: start
+	@bun dev
+mysql: start
 	@docker run \
 		--name mysql \
 		-it \
