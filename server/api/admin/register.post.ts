@@ -1,5 +1,5 @@
-import bcrypt from 'bcrypt';
 import { db, schema } from '@nuxthub/db';
+import bcrypt from 'bcrypt';
 
 export default defineEventHandler(async (e) => {
     const { success } = await $fetch('/api/admin/exists');
@@ -25,7 +25,7 @@ export default defineEventHandler(async (e) => {
         is_verified: isVerified,
     });
     if (!isVerified) {
-        setUserSession(e, {
+        await setUserSession(e, {
             user: {
                 email,
             },
@@ -37,7 +37,7 @@ export default defineEventHandler(async (e) => {
             success: true as const,
         };
     }
-    setUserSession(e, {
+    await setUserSession(e, {
         user: {
             email,
             password: hashedPassword,

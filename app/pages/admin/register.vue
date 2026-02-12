@@ -16,10 +16,12 @@ const onSubmit = async (e: FormSubmitEvent<AdminSchema>) => {
     const res = await $fetch('/api/admin/register', {
         method: 'POST',
         body: e.data,
+        ignoreResponseError: true,
     });
     if (res.success) {
         if (res.needsVerification) {
             await navigateTo('/admin/change-password');
+            return;
         }
         await navigateTo('/admin/dashboard');
     }

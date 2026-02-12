@@ -15,6 +15,7 @@ const onSubmit = async (e: FormSubmitEvent<ChangePasswordSchema>) => {
             email: user.value?.email,
             ...e.data,
         },
+        ignoreResponseError: true,
     });
     if (res.success) {
         await navigateTo('/dashboard');

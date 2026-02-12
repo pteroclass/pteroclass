@@ -1,6 +1,6 @@
+import { db, schema } from '@nuxthub/db';
 import bcrypt from 'bcrypt';
 import { eq } from 'drizzle-orm';
-import { db, schema } from '@nuxthub/db';
 import z from 'zod';
 
 export default defineEventHandler(async (e) => {
@@ -16,6 +16,12 @@ export default defineEventHandler(async (e) => {
         .update(schema.users)
         .set({ password: hashedPassword, is_verified: true })
         .where(eq(schema.users.email, email));
+    await setUserSession(e, {
+        user: {
+            email,
+            password: hashedPassword,
+        },
+    });
     setResponseStatus(e, 201);
     return { message: 'User registered successfully', success: true };
 });

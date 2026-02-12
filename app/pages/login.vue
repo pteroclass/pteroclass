@@ -12,6 +12,7 @@ const onSubmit = async (e: FormSubmitEvent<LoginSchema>) => {
     const res = await $fetch('/api/login', {
         method: 'POST',
         body: e.data,
+        ignoreResponseError: true,
     });
     if (res.success) {
         await navigateTo('/dashboard');
