@@ -3,24 +3,19 @@
     "type": "module",
     "private": true,
     "scripts": {
-        "build": "nuxt build",
-        "dev": "nuxt dev",
-        "generate": "nuxt generate",
-        "preview": "nuxt preview",
-        "postinstall": "nuxt prepare && nuxt db generate",
-        "start": "make -j",
+        "dev": "make -j",
         "format": "prettier --write ."
     },
     "dependencies": {
         "@nuxt/ui": "^4.4.0",
         "@nuxthub/core": "^0.10.6",
         "bcrypt": "^6.0.0",
-        "dotenv": "^17.2.4",
+        "dotenv": "^17.3.1",
         "drizzle-kit": "^0.31.9",
         "drizzle-orm": "^0.45.1",
-        "mysql2": "^3.17.0",
+        "mysql2": "^3.17.2",
         "nuxt": "^4.3.1",
-        "nuxt-auth-utils": "^0.5.28",
+        "nuxt-auth-utils": "^0.5.29",
         "uuid": "^13.0.0",
         "vue": "^3.5.28",
         "vue-router": "^5.0.2",
@@ -33,7 +28,7 @@
         "prettier": "^3.8.1",
         "prettier-plugin-organize-imports": "^4.3.0",
         "prettier-plugin-tailwindcss": "^0.7.2",
-        "tailwind-merge": "^3.4.0",
+        "tailwind-merge": "^3.4.1",
         "tailwindcss": "^4.1.18"
     },
     "overrides": {

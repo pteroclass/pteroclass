@@ -1,9 +1,9 @@
-.PHONY: all dev start mysql
+.PHONY: all start dev mysql
 all: dev mysql
 start:
 	@docker desktop start || true
 dev: start
-	@bun dev
+	@bun nuxt dev
 mysql: start
 	@docker run \
 		--name mysql \
