@@ -1,23 +1,29 @@
 import z from 'zod';
 
-export const zodRoleEnum = z.enum(['student', 'teacher', 'admin']);
+export const zodRoleEnum = z.enum(
+    ['student', 'teacher', 'admin'],
+    'Not a valid role!',
+);
 
-export const zodVerifiedEnum = z.enum(['Yes', 'No']);
+export const zodVerifiedEnum = z.enum(
+    ['Yes', 'No'],
+    'Not a valid verified status!',
+);
 
 export const adminZodSchema = z.object({
-    email: z.email(),
-    password: z.string(),
+    email: z.email('Not a valid email address!'),
+    password: z.string().min(8, 'Not a valid password!'),
     role: zodRoleEnum,
     verified: zodVerifiedEnum,
 });
 
 export const loginZodSchema = z.object({
-    email: z.email(),
-    password: z.string(),
+    email: z.email('Not a valid email address!'),
+    password: z.string().min(8, 'Not a valid password!'),
 });
 
 export const changePasswordZodSchema = z.object({
-    password: z.string(),
+    password: z.string().min(8, 'Not a valid password!'),
 });
 
 export type Role = z.infer<typeof zodRoleEnum>;
