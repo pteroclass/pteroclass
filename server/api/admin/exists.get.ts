@@ -3,11 +3,8 @@ import { eq } from 'drizzle-orm';
 
 export default defineEventHandler(async () => {
     const adminExists =
-        (
-            await db
-                .select()
-                .from(schema.users)
-                .where(eq(schema.users.role, 'admin'))
-        ).length > 0;
+        (await db.query.users.findFirst({
+            where: eq(schema.users.role, 'admin'),
+        })) != undefined;
     return { success: adminExists };
 });

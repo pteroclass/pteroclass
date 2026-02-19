@@ -7,6 +7,7 @@ useHead({
 const formState = reactive<LoginSchema>({
     email: '',
     password: '',
+    remember: false,
 });
 const onSubmit = async (e: FormSubmitEvent<LoginSchema>) => {
     const res = await $fetch('/api/login', {
@@ -31,6 +32,14 @@ const onSubmit = async (e: FormSubmitEvent<LoginSchema>) => {
         </UFormField>
         <UFormField label="password" name="password" size="lg" required>
             <UInput type="password" v-model="formState.password" />
+        </UFormField>
+        <UFormField
+            class="flex items-center gap-x-2"
+            label="Save credentials?"
+            name="remember"
+            size="lg"
+        >
+            <USwitch v-model="formState.remember" />
         </UFormField>
         <UButton type="submit" class="inline-flex cursor-pointer justify-center"
             >Login</UButton

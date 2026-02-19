@@ -20,6 +20,7 @@ export const adminZodSchema = z.object({
 export const loginZodSchema = z.object({
     email: z.email('Not a valid email address!'),
     password: z.string().min(8, 'Not a valid password!'),
+    remember: z.boolean(),
 });
 
 export const changePasswordZodSchema = z.object({
