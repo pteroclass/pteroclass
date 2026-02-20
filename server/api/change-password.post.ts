@@ -14,7 +14,11 @@ export default defineEventHandler(async (e) => {
     const hashedPassword = await bcrypt.hash(password, 12);
     await db
         .update(schema.users)
-        .set({ password: hashedPassword, is_verified: true })
+        .set({
+            password: hashedPassword,
+            is_verified: true,
+            verified_at: new Date(),
+        })
         .where(eq(schema.users.email, email));
     await setUserSession(e, {
         user: {
@@ -23,5 +27,5 @@ export default defineEventHandler(async (e) => {
         },
     });
     setResponseStatus(e, 201);
-    return { message: 'User registered successfully', success: true };
+    return { message: 'User password changed successfully', success: true };
 });

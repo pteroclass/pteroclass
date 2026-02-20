@@ -19,6 +19,7 @@ export const users = mysqlTable('users', {
         .default('student'),
     is_verified: boolean('is_verified').notNull().default(false),
     created_at: timestamp('created_at').notNull().defaultNow(),
+    verified_at: timestamp('verified_at'),
 });
 
 export type User = typeof users.$inferInsert;

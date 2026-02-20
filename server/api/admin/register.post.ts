@@ -23,6 +23,7 @@ export default defineEventHandler(async (e) => {
         password: hashedPassword,
         role,
         is_verified: isVerified,
+        verified_at: isVerified ? new Date() : null,
     });
     if (!isVerified) {
         await setUserSession(e, {
