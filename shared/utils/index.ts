@@ -10,6 +10,11 @@ export const zodVerifiedEnum = z.enum(
     'Not a valid verified status!',
 );
 
+export const zodDaysEnum = z.enum(
+    ['7 days', '14 days', '21 days', '28 days'],
+    'Not a valid day!',
+);
+
 export const adminZodSchema = z.object({
     email: z.email('Not a valid email address!'),
     password: z.string().min(8, 'Not a valid password!'),
@@ -21,6 +26,7 @@ export const loginZodSchema = z.object({
     email: z.email('Not a valid email address!'),
     password: z.string().min(8, 'Not a valid password!'),
     remember: z.boolean(),
+    days: zodDaysEnum,
 });
 
 export const changePasswordZodSchema = z.object({
@@ -30,6 +36,8 @@ export const changePasswordZodSchema = z.object({
 export type Role = z.infer<typeof zodRoleEnum>;
 
 export type Verified = z.infer<typeof zodVerifiedEnum>;
+
+export type Days = z.infer<typeof zodDaysEnum>;
 
 export type AdminSchema = z.infer<typeof adminZodSchema>;
 

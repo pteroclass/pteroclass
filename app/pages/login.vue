@@ -8,6 +8,7 @@ const formState = reactive<LoginSchema>({
     email: '',
     password: '',
     remember: false,
+    days: '21 days',
 });
 const onSubmit = async (e: FormSubmitEvent<LoginSchema>) => {
     const res = await $fetch('/api/login', {
@@ -41,6 +42,7 @@ const onSubmit = async (e: FormSubmitEvent<LoginSchema>) => {
         >
             <USwitch v-model="formState.remember" />
         </UFormField>
+        <DaysSelect :disabled="!formState.remember" />
         <UButton type="submit" class="inline-flex cursor-pointer justify-center"
             >Login</UButton
         >

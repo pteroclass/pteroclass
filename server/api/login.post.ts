@@ -11,7 +11,7 @@ export default defineEventHandler(async (e) => {
             success: false as const,
         };
     }
-    const { email, password, remember } = body.data;
+    const { email, password, remember, days } = body.data;
     const user = await db.query.users.findFirst({
         where: eq(schema.users.email, email),
     });
@@ -32,7 +32,11 @@ export default defineEventHandler(async (e) => {
                 password: user.password,
             },
         },
-        { maxAge: remember ? 60 * 60 * 24 * 21 : undefined },
+        {
+            maxAge: remember
+                ? 60 * 60 * 24 * parseInt(days.split(' ')[0] || '21')
+                : undefined,
+        },
     );
     setResponseStatus(e, 202);
     return { message: 'User logged in successfully', success: true as const };
